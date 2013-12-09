@@ -1,4 +1,8 @@
 <?php
+
+//In days
+$timeBeforeNewContact=14;
+
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=contactdb', 'root', '');

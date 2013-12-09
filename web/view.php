@@ -35,6 +35,6 @@ Notes : <?php echo $donnees['notes'] ?><br/>
 <a class="pure-button" href="/">Retour</a>
 
 <?php
-$reponse->closeCursor();
+$request->closeCursor();
 require_once(__ROOT__.'/inc/footer.inc.php');
 ?>

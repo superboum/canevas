@@ -17,5 +17,10 @@ CREATE TABLE `cdb_people` (
    `notes` text,
    `member` varchar(255),
    PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
+CREATE TABLE `cdb_mailing` (
+   `id` int(10) not null auto_increment,
+   `email` varchar(255) not null,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
