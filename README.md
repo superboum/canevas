@@ -12,3 +12,8 @@ Installation
 - Importez db.sql sur votre serveur mysql
 - Ouvrez votre navigateur, ça devrait marcher
 
+Aperçu
+------
+
+Cette capture d'écran a été prise durant le développement de canvass et ne correspond pas exactement à l'apparence actuelle de l'application.
+![Capture de canvass](http://i.imgur.com/T1C3fcr.png)
