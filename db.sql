@@ -8,7 +8,7 @@ CREATE TABLE `cdb_people` (
    `entreprise` varchar(255),
    `name` varchar(255),
    `poste` varchar(255),
-   `phone` varchar(20),
+   `phone` varchar(255),
    `email` varchar(255),
    `1place` varchar(255),
    `1date` date,

@@ -5,7 +5,7 @@ require_once(__ROOT__.'/inc/conf.inc.php');
 require_once(__ROOT__.'/inc/header.inc.php');
 require_once(__ROOT__.'/inc/action.inc.php');
 
-$request = $bdd->query('SELECT id, entreprise, name, email, phone, ndate, member FROM cdb_people ORDER BY ndate ASC');
+$request = $bdd->query('SELECT id, entreprise, name, email, ndate, member FROM cdb_people ORDER BY ndate ASC');
 
 ?>
             
