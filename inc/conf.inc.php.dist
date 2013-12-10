@@ -2,6 +2,7 @@
 
 //In days
 $timeBeforeNewContact=14;
+$path="/web";
 
 try
 {
@@ -10,16 +11,6 @@ try
 catch (Exception $e)
 {
         die('Erreur : ' . $e->getMessage());
-}
-
-//URL generator, should not be modified
-$uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-if (substr($uri[0], -4) == '.php') {
-    $path = dirname($uri[0]);
-} else if (substr($uri[0], -1) == '/') {
-    $path = substr($uri[0], 0, -1);
-} else {
-    $path = $uri[0];
 }
 ?>
 
