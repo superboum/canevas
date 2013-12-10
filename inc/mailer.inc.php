@@ -23,7 +23,7 @@ if ($data) {
     $message = wordwrap($message, 70, "\r\n");
     $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
     while ($donnees = $mailing->fetch()) {
-        $messagePers = $message.'\r\nPour vous désinscire, suivez ce lien '.$domain.$web.'/index.php?action=unsubscribe&email='.$donnees['id'];
+        $messagePers = $message."\r\nPour vous désinscire, suivez ce lien ".$domain.$web."/index.php?action=unsubscribe&email=".$donnees['id'];
         mail($donnees['email'], '[canvass] Clients à recontacter', $messagePers, implode("\r\n", $headers));
     }
 }
