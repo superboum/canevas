@@ -30,9 +30,9 @@ Réponse : <?php echo $donnees['answer'] ?><br/>
 Notes : <?php echo $donnees['notes'] ?><br/>
 </p>
 
-<a class="pure-button pure-button-success" href="/index.php?action=contact&id=<?php echo $donnees['id'] ?>" >Contacté <img width="14" src="/img/contact.png"/></a>
-<a class="pure-button" href="/edit.php?id=<?php echo $donnees['id'] ?>">Modifier</a>
-<a class="pure-button" href="/">Retour</a>
+<a class="pure-button pure-button-success" href="<?php echo $path; ?>/index.php?action=contact&id=<?php echo $donnees['id'] ?>" >Contacté <img width="14" src="/img/contact.png"/></a>
+<a class="pure-button" href="<?php echo $path; ?>/edit.php?id=<?php echo $donnees['id'] ?>">Modifier</a>
+<a class="pure-button" href="<?php echo $path; ?>/">Retour</a>
 
 <?php
 $request->closeCursor();

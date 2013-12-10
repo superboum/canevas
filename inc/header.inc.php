@@ -6,8 +6,8 @@
         <meta name="description" content="Auto contact">
 
         <title>canvass</title>
-        <link rel="stylesheet" href="/css/pure-min.css">
-        <link rel="stylesheet" href="/css/local.css">
+        <link rel="stylesheet" href="<?php echo $path; ?>/css/pure-min.css">
+        <link rel="stylesheet" href="<?php echo $path; ?>/css/local.css">
     </head>
     <body>
         <div id="layout">

@@ -11,8 +11,8 @@ $request = $bdd->query('SELECT id, entreprise, name, email, ndate, member FROM c
             
 
             <h2 class="content-subhead">Liste des contacts</h2>
-            <a class="pure-button pure-button-primary" href="/add.php">Ajouter un contact</a>
-            <a class="pure-button" href="/mail.php">Notification mail</a>
+            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/add.php">Ajouter un contact</a>
+            <a class="pure-button" href="<?php echo $path; ?>/mail.php">Notification mail</a>
             <p>
                 <table class="pure-table pure-table-horizontal">
                     <thead>
@@ -37,12 +37,12 @@ $request = $bdd->query('SELECT id, entreprise, name, email, ndate, member FROM c
                             <td><?php echo $donnees['ndate'] ?></td>
                             <td><?php echo $donnees['member'] ?></td>
                             <td>
-                                <a class="pure-button" href="/view.php?id=<?php echo $donnees['id'] ?>">
-                                    <img width="14" src="/img/view.png"/>
+                                <a class="pure-button" href="<?php echo $path; ?>/view.php?id=<?php echo $donnees['id'] ?>">
+                                    <img width="14" src="<?php echo $path; ?>/img/view.png"/>
                                 </a>
                                 
-                                <a class="pure-button pure-button-error" href="/index.php?action=remove&id=<?php echo $donnees['id'] ?>">
-                                    <img width="14" src="/img/remove.png"/>
+                                <a class="pure-button pure-button-error" href="<?php echo $path; ?>/index.php?action=remove&id=<?php echo $donnees['id'] ?>">
+                                    <img width="14" src="<?php echo $path; ?>/img/remove.png"/>
                                 </a>
                             </td>
                         </tr>
@@ -50,8 +50,8 @@ $request = $bdd->query('SELECT id, entreprise, name, email, ndate, member FROM c
                     </tbody>
                 </table>
             </p>
-            <a class="pure-button pure-button-primary" href="/add.php">Ajouter un contact</a>
-            <a class="pure-button" href="/mail.php">Notification mail</a>
+            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/add.php">Ajouter un contact</a>
+            <a class="pure-button" href="<?php echo $path; ?>/mail.php">Notification mail</a>
 
 <?php
 $request->closeCursor();

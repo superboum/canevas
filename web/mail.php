@@ -8,7 +8,7 @@ require_once(__ROOT__.'/inc/header.inc.php');
 
 <h2 class="content-subhead">Notification mail</h2>
 <p>Chaque semaines, les personnes qui n'ont pas été contactées depuis plus de <?php echo $timeBeforeNewContact; ?> jours vous seront notifiées par email.</p>
-<form class="pure-form pure-form-aligned" method="POST" action="/index.php?action=email">
+<form class="pure-form pure-form-aligned" method="POST" action="<?php echo $path; ?>/index.php?action=email">
     <fieldset>
         <div class="pure-control-group">
             <label for="email">Votre email</label>
@@ -19,7 +19,7 @@ require_once(__ROOT__.'/inc/header.inc.php');
         <div class="pure-controls">
 
             <button type="submit" class="pure-button pure-button-primary">Valider</button>
-            <a class="pure-button" href="/">Retour</a>
+            <a class="pure-button" href="<?php echo $path; ?>/">Retour</a>
         </div>
         
     </fieldset>
