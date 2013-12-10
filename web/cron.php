@@ -18,8 +18,7 @@ $request->closeCursor();
 if ($data) {
     $message = wordwrap($message, 70, "\r\n");
     $mailing = $bdd->query('SELECT email FROM cdb_mailing');
-    
-    while ($donnees = $request->fetch()) {
+    while ($donnees = $mailing->fetch()) {
         mail($donnees['email'], '[canvass] Clients à recontacter', $message);
     }
 }
