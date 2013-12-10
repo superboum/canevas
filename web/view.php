@@ -21,7 +21,7 @@ $donnees = $request->fetch();
 
 <h4>Dates</h4>
 Premier contact : <?php echo $donnees['1place'] ?>, le <?php echo $donnees['1date'] ?><br/>
-Dernier contact : le <?php echo $donnees['1date'] ?><br/>
+Dernier contact : le <?php echo $donnees['ndate'] ?><br/>
 
 <h4>Dossier</h4>
 Membre : <?php echo $donnees['member'] ?><br/>

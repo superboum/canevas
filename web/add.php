@@ -40,12 +40,12 @@ require_once(__ROOT__.'/inc/header.inc.php');
         
         <div class="pure-control-group">
             <label for="1date">Date de rencontre (annee-mois-jour)</label>
-            <input name="1date" id="1date" type="date" placeholder="2011-02-20">
+            <input name="1date" id="1date" type="text" placeholder="2011-02-20">
         </div>
         
         <div class="pure-control-group">
             <label for="ndate">Dernière rencontre (annee-mois-jour)</label>
-            <input name="ndate" id="ndate" type="date" placeholder="2011-02-20">
+            <input name="ndate" id="ndate" type="text" placeholder="2011-02-20">
         </div>
 
         <div class="pure-control-group">
@@ -56,6 +56,16 @@ require_once(__ROOT__.'/inc/header.inc.php');
         <div class="pure-control-group">
             <label for="school">Ecole du membre</label>
             <input name="school" id="school" type="text" placeholder="INSA Rennes">
+        </div>
+        
+        <div class="pure-control-group">
+            <label for="answer">Réponse</label>
+            <textarea name="answer" id="answer" placeholder="Oui, Non, Peut-être..."></textarea>
+        </div>
+        
+        <div class="pure-control-group">
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="notes" placeholder="..."></textarea>
         </div>
 
         <div class="pure-controls">

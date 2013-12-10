@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET['action'])) {
-
+    
 } else if ($_GET['action'] === 'add') {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $addContact = $bdd->prepare('INSERT INTO 
@@ -28,6 +28,14 @@ if (!isset($_GET['action'])) {
 } else if ($_GET['action'] === 'email') {
     $addMail = $bdd->prepare('INSERT INTO cdb_mailing(email) VALUES(?);');
     $addMail->execute(array($_POST['email']));
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'search') {
+    $keyword = '%'.$_GET['keyword'].'%';
+    $request = $bdd->prepare('SELECT id, entreprise, name, email, ndate, member FROM cdb_people WHERE entreprise LIKE ? OR name LIKE ? OR email LIKE ? OR member LIKE ? ORDER BY ndate ASC');
+    $request->execute(array($keyword, $keyword, $keyword, $keyword));
+} else {
+    $request = $bdd->query('SELECT id, entreprise, name, email, ndate, member FROM cdb_people ORDER BY ndate ASC');
 }
 
 ?>
