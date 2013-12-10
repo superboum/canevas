@@ -20,10 +20,11 @@ $request->closeCursor();
 
 
 if ($data) {
-    $message = wordwrap($message, 70, "\r\n");
+    
     $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
     while ($donnees = $mailing->fetch()) {
         $messagePers = $message."\r\nPour vous désinscire, suivez ce lien ".$domain.$path."/index.php?action=unsubscribe&email=".$donnees['id'];
+        //$messagePers = wordwrap($messagePers, 70, "\r\n");
         mail($donnees['email'], '[canvass] Clients à recontacter', $messagePers, implode("\r\n", $headers));
     }
 }
