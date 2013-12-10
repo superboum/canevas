@@ -8,10 +8,6 @@ $data = false;
 $headers   = array();
 $headers[] = "MIME-Version: 1.0";
 $headers[] = "Content-type: text/plain; charset=utf-8";
-//$headers[] = "From: Sender Name <sender@domain.com>";
-//$headers[] = "Bcc: JJ Chong <bcc@domain2.com>";
-//$headers[] = "Reply-To: Recipient Name <receiver@domain3.com>";
-//$headers[] = "Subject: {$subject}";
 $headers[] = "X-Mailer: PHP/".phpversion();
 
 
@@ -25,9 +21,10 @@ $request->closeCursor();
 
 if ($data) {
     $message = wordwrap($message, 70, "\r\n");
-    $mailing = $bdd->query('SELECT email FROM cdb_mailing');
+    $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
     while ($donnees = $mailing->fetch()) {
-        mail($donnees['email'], '[canvass] Clients à recontacter', $message, implode("\r\n", $headers));
+        $messagePers = $message.'\r\nPour vous désinscire, suivez ce lien '.$domain.$web.'/index.php?action=unsubscribe&email='.$donnees['id'];
+        mail($donnees['email'], '[canvass] Clients à recontacter', $messagePers, implode("\r\n", $headers));
     }
 }
 

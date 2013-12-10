@@ -3,14 +3,19 @@ define('__ROOT__', dirname(dirname(__FILE__)));
 
 require_once(__ROOT__.'/inc/conf.inc.php');
 require_once(__ROOT__.'/inc/header.inc.php');
-require_once(__ROOT__.'/inc/action.inc.php');
+require_once(__ROOT__.'/inc/list.action.inc.php');
 
 ?>
             
 
             <h2 class="content-subhead">Liste des contacts</h2>
-            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/add.php">Ajouter un contact</a>
+            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/form.php">Ajouter un contact</a>
             <a class="pure-button" href="<?php echo $path; ?>/mail.php">Notification mail</a>
+            <form class="pure-form search" action="<?php echo $path; ?>/index.php" method="GET">
+                <input name="keyword" type="text" class="pure-input-rounded">
+                <input name="action" value="search" style="display:none">
+                <button type="submit" class="pure-button">Chercher</button>
+            </form>
             <p>
                 <table class="pure-table pure-table-horizontal">
                     <thead>
@@ -18,7 +23,6 @@ require_once(__ROOT__.'/inc/action.inc.php');
                             <th>#</th>
                             <th>Entreprise</th>
                             <th>Personne</th>
-                            <th>Email</th>
                             <th>Der. fois</th>
                             <th>Membre</th>
                             <th>Actions</th>
@@ -31,7 +35,6 @@ require_once(__ROOT__.'/inc/action.inc.php');
                             <td><?php echo $donnees['id'] ?></td>
                             <td><?php echo $donnees['entreprise'] ?></td>
                             <td><?php echo $donnees['name'] ?></td>
-                            <td><?php echo $donnees['email'] ?></td>
                             <td><?php echo $donnees['ndate'] ?></td>
                             <td><?php echo $donnees['member'] ?></td>
                             <td>
@@ -48,8 +51,13 @@ require_once(__ROOT__.'/inc/action.inc.php');
                     </tbody>
                 </table>
             </p>
-            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/add.php">Ajouter un contact</a>
+            <a class="pure-button pure-button-primary" href="<?php echo $path; ?>/form.php">Ajouter un contact</a>
             <a class="pure-button" href="<?php echo $path; ?>/mail.php">Notification mail</a>
+            <form class="pure-form search" action="<?php echo $path; ?>/index.php" method="GET">
+                <input name="keyword" type="text" class="pure-input-rounded">
+                <input name="action" value="search" style="display:none">
+                <button type="submit" class="pure-button">Chercher</button>
+            </form>
 
 <?php
 $request->closeCursor();

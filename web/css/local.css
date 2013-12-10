@@ -68,4 +68,13 @@ The content `<div>` is where all your content goes.
         .pure-button-secondary {
             background: rgb(66, 184, 221); /* this is a light blue */
         }
+        
+.search {
+    float: right;
+
+}
+
+table {
+    width: 100%;
+}
 

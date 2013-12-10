@@ -3,6 +3,7 @@
 //In days
 $timeBeforeNewContact=14;
 $path="/web";
+$domain="http://sandbox.deuxfleurs.fr/";
 
 try
 {
