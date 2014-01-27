@@ -1,7 +1,7 @@
 <?php
 
-function sendMail($email, $body, $headers, $id=0) {
-    $personnalUrl = $domain.$path."/index.php?action=unsubscribe&email=".$id;
+function sendMail($email, $body, $headers, $baseUrl, $id=0) {
+    $personnalUrl = $baseUrl."/index.php?action=unsubscribe&email=".$id;
     $messagePers = str_replace("[URL]",$personnalUrl,$body);
     mail($email, '[canvass] Clients a recontacter', $messagePers, implode("\r\n", $headers));
 }
@@ -37,11 +37,7 @@ $message = "<html>
                             color:#ffffff;
                         }
                         
-                                                
-                        table caption
-                        {
-                            font-style: bold;    
-                        }
+                                              
                         
                         table tr.alt td 
                         {
@@ -51,7 +47,7 @@ $message = "<html>
                     </style>
                 </head>
                 <body>
-                    <p>Pour vous désinscrire, suivez ce lien [URL]</p>
+                    <p>Pour vous désinscrire, suivez ce lien <a href=\"[URL]\">[URL]</a></p>
                     <p>Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.</p>
           ";
 
@@ -67,7 +63,7 @@ while ($donnees = $request->fetch()) {
 
     if ($donnees['member'] != $lastMember) {
         if ($lastMember != "nobody") {
-            $message .= "</table>";
+            $message .= "<hr/></table>";
         }
         
         $message .= "<table>
@@ -101,11 +97,11 @@ $message .= "       </table>
 if ($data) {
     
     if (isset($_GET['sendTo'])) {
-        sendMail($_GET['sendTo'], $message, $headers);
+        sendMail($_GET['sendTo'], $message, $headers, $domain.$path);
     } else {
         $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
         while ($donnees = $mailing->fetch()) {
-            sendMail($donnees['email'], $message, $headers, $donnees['id']);
+            sendMail($donnees['email'], $message, $headers, $domain.$path, $donnees['id']);
         }
     }
 }
