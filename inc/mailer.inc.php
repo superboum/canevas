@@ -6,8 +6,8 @@ function sendMail($email, $body, $headers, $baseUrl, $id=0) {
     mail($email, '[canvass] Clients a recontacter', $messagePers, implode("\r\n", $headers));
 }
 
-$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? WHERE answer NOT LIKE \'%NON%\' ORDER BY member ASC, ndate ASC');
-$request->execute(array($timeBeforeNewContact));
+$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? AND answer NOT LIKE ? ORDER BY member ASC, ndate ASC');
+$request->execute(array($timeBeforeNewContact, "NON%"));
 
 $data = false;
 
