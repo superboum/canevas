@@ -1,31 +1,73 @@
 <?php
-$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? ORDER BY ndate ASC');
+
+function sendMail($email, $body, $id=0) {
+    $personnalUrl = $domain.$path."/index.php?action=unsubscribe&email=".$id;
+    $messagePers = str_replace("[URL]",$personnalUrl,$body);
+    mail($email, '[canvass] Clients a recontacter', $messagePers, implode("\r\n", $headers));
+}
+
+$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? ORDER BY member ASC, ndate ASC');
 $request->execute(array($timeBeforeNewContact));
 
-$message = "Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.\r\n\r\n";
 $data = false;
+
+$message = "<html>
+                <head></head>
+                <body>
+                    <p>Pour vous désinscrire, <a href=\"[URL]\">cliquez ici</a></p>
+                    <p>Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.</p>
+          ";
 
 $headers   = array();
 $headers[] = "MIME-Version: 1.0";
-$headers[] = "Content-type: text/plain; charset=utf-8";
+$headers[] = "Content-type: text/html; charset=utf-8";
 $headers[] = "X-Mailer: PHP/".phpversion();
 
-
+$lastMember = null;
 while ($donnees = $request->fetch()) {
-    $message .= $donnees['name']." de ".$donnees['entreprise']. " a été contacté la dernière fois le ".$donnees['ndate'].". Affecté à ".$donnees['member'].".\r\n";
+
     $data = true ;
+
+    if ($donnees['member'] != $lastMember) {
+        if ($lastMember != null) {
+            $message .= "</table>";
+        }
+        $message .= "<table>
+                        <caption>".$donnees['member']."</caption>
+                        <tr>
+                            <th>Entreprise</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    ";
+    }
+    
+    $message .= "<tr>
+                    <td>".$donnees['entreprise']."</td>
+                    <td>".$donnees['ndate']."</td>
+                    <td> Soon </td>
+                 </tr>";
+   
+
+
 }
 
 $request->closeCursor();
 
+$message .= "       </table>
+               </body>
+            </html>";
+
 
 if ($data) {
     
-    $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
-    while ($donnees = $mailing->fetch()) {
-        $messagePers = $message."\r\nPour vous désinscire, suivez ce lien ".$domain.$path."/index.php?action=unsubscribe&email=".$donnees['id'];
-        //$messagePers = wordwrap($messagePers, 70, "\r\n");
-        mail($donnees['email'], '[canvass] Clients à recontacter', $messagePers, implode("\r\n", $headers));
+    if (isset($_GET['sendTo'])) {
+        sendMail($_GET['sendTo'], $message);
+    } else {
+        $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
+        while ($donnees = $mailing->fetch()) {
+            sendMail($donnees['email'], $message, $donnees['id']);
+        }
     }
 }
 
