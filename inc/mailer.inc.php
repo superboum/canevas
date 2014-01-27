@@ -1,6 +1,6 @@
 <?php
 
-function sendMail($email, $body, $id=0) {
+function sendMail($email, $body, $headers, $id=0) {
     $personnalUrl = $domain.$path."/index.php?action=unsubscribe&email=".$id;
     $messagePers = str_replace("[URL]",$personnalUrl,$body);
     mail($email, '[canvass] Clients a recontacter', $messagePers, implode("\r\n", $headers));
@@ -62,11 +62,11 @@ $message .= "       </table>
 if ($data) {
     
     if (isset($_GET['sendTo'])) {
-        sendMail($_GET['sendTo'], $message);
+        sendMail($_GET['sendTo'], $message, $headers);
     } else {
         $mailing = $bdd->query('SELECT id,email FROM cdb_mailing');
         while ($donnees = $mailing->fetch()) {
-            sendMail($donnees['email'], $message, $donnees['id']);
+            sendMail($donnees['email'], $message, $headers, $donnees['id']);
         }
     }
 }
