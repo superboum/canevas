@@ -48,7 +48,7 @@ $message = "<html>
                 </head>
                 <body>
                     <p>Pour vous désinscrire, suivez ce lien <a href=\"[URL]\">[URL]</a></p>
-                    <p>Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.</p>
+                    <p>Voici la liste des personnes que vous n'avez pas contactées depuis plus de ".$timeBeforeNewContact." jours.</p>
           ";
 
 $headers   = array();
@@ -67,11 +67,11 @@ while ($donnees = $request->fetch()) {
         }
         
         $message .= "<table>
-                        <caption>".$donnees['member']."</caption>
+                        <caption>Affecté à : <strong>".$donnees['member']."</strong></caption>
                         <tr>
                             <th>Entreprise</th>
                             <th>Date</th>
-                            <th>Action</th>
+                            
                         </tr>
                     ";
         $lastMember = $donnees['member'];
@@ -80,7 +80,7 @@ while ($donnees = $request->fetch()) {
     $message .= "<tr>
                     <td>".$donnees['entreprise']."</td>
                     <td>".$donnees['ndate']."</td>
-                    <td> Soon </td>
+                   
                  </tr>";
    
 
