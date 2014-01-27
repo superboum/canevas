@@ -63,7 +63,7 @@ while ($donnees = $request->fetch()) {
 
     if ($donnees['member'] != $lastMember) {
         if ($lastMember != "nobody") {
-            $message .= "<hr/></table>";
+            $message .= "</table><br/>";
         }
         
         $message .= "<table>
