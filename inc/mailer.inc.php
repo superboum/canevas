@@ -12,7 +12,36 @@ $request->execute(array($timeBeforeNewContact));
 $data = false;
 
 $message = "<html>
-                <head></head>
+                <head>
+                    <style>
+                        table
+                        {
+                            font-family: Arial, Helvetica, sans-serif;
+                            width:100%;
+                            border-collapse:collapse;
+                        }
+                        table td, table th 
+                        {
+                            font-size:1em;
+                            border:1px solid #98bf21;
+                            padding:3px 7px 2px 7px;
+                        }
+                        table th 
+                        {
+                            font-size:1.1em;
+                            text-align:left;
+                            padding-top:5px;
+                            padding-bottom:4px;
+                            background-color:#A7C942;
+                            color:#ffffff;
+                        }
+                        table tr.alt td 
+                        {
+                            color:#000000;
+                            background-color:#EAF2D3;
+                        }
+                    </style>
+                </head>
                 <body>
                     <p>Pour vous désinscrire, <a href=\"[URL]\">cliquez ici</a></p>
                     <p>Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.</p>
@@ -23,15 +52,16 @@ $headers[] = "MIME-Version: 1.0";
 $headers[] = "Content-type: text/html; charset=utf-8";
 $headers[] = "X-Mailer: PHP/".phpversion();
 
-$lastMember = null;
+$lastMember = "nobody";
 while ($donnees = $request->fetch()) {
 
     $data = true ;
 
     if ($donnees['member'] != $lastMember) {
-        if ($lastMember != null) {
+        if ($lastMember != "nobody") {
             $message .= "</table>";
         }
+        
         $message .= "<table>
                         <caption>".$donnees['member']."</caption>
                         <tr>
@@ -40,6 +70,7 @@ while ($donnees = $request->fetch()) {
                             <th>Action</th>
                         </tr>
                     ";
+        $lastMember = $donnees['member'];
     }
     
     $message .= "<tr>
