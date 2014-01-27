@@ -6,11 +6,14 @@ Canvass est une application web (PHP/MySQL) pour aider à la prospection
 Installation
 ------------
 
-- Veuillez faire pointer votre serveur web sur le dossier web de canvass.
-- Dans le dossier inc, copiez conf.inc.php.dist en conf.inc.php
-- Modifiez conf.inc.php avec vos identifiants de base de donnée.
-- Importez db.sql sur votre serveur mysql
-- Ouvrez votre navigateur, ça devrait marcher
+- Installez Composer
+- Lancez ``composer.phar install``
+- Faites pointer votre serveur sur le dossier web de canvass
+
+Notes sur l'utilisation
+-----------------------
+
+Veuillez vous renseigner sur les contraintes légales en vigueur dans votre pays liées à la création d'une base de donnée.
 
 Aperçu
 ------
