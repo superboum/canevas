@@ -20,13 +20,14 @@ $message = "<html>
                             width:100%;
                             border-collapse:collapse;
                         }
+                        
                         table td, table th 
                         {
                             font-size:1em;
                             border:1px solid #98bf21;
                             padding:3px 7px 2px 7px;
                         }
-                        table th 
+                        table th, table caption
                         {
                             font-size:1.1em;
                             text-align:left;
@@ -35,6 +36,13 @@ $message = "<html>
                             background-color:#A7C942;
                             color:#ffffff;
                         }
+                        
+                                                
+                        table caption
+                        {
+                            font-style: bold;    
+                        }
+                        
                         table tr.alt td 
                         {
                             color:#000000;
@@ -43,7 +51,7 @@ $message = "<html>
                     </style>
                 </head>
                 <body>
-                    <p>Pour vous désinscrire, <a href=\"[URL]\">cliquez ici</a></p>
+                    <p>Pour vous désinscrire, suivez ce lien [URL]</p>
                     <p>Voici la liste des personnes que vous n'avez pas contacté depuis plus de ".$timeBeforeNewContact." jours.</p>
           ";
 
