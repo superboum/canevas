@@ -1,2 +1,4 @@
 inc/conf.inc.php
 *~
+composer.lock
+vendor/
