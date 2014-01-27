@@ -2,11 +2,11 @@
 
 function sendMail($email, $body, $headers, $baseUrl, $id=0) {
     $personnalUrl = $baseUrl."/index.php?action=unsubscribe&email=".$id;
-    $messagePers = str_replace("[URL]",$personnalUrl,$body);
+    $messagePers = str_replace("[LEAVE]",$personnalUrl,$body);
     mail($email, '[canvass] Clients a recontacter', $messagePers, implode("\r\n", $headers));
 }
 
-$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? ORDER BY member ASC, ndate ASC');
+$request = $bdd->prepare('SELECT id, entreprise, name, ndate, member FROM cdb_people WHERE TO_DAYS(NOW()) - TO_DAYS(ndate) >= ? WHERE answer NOT LIKE \'%NON%\' ORDER BY member ASC, ndate ASC');
 $request->execute(array($timeBeforeNewContact));
 
 $data = false;
@@ -47,7 +47,7 @@ $message = "<html>
                     </style>
                 </head>
                 <body>
-                    <p>Pour vous désinscrire, suivez ce lien <a href=\"[URL]\">[URL]</a></p>
+                    <p>Pour retourner sur le site web, rendez-vous ici : ".$domain.$path."
                     <p>Voici la liste des personnes que vous n'avez pas contactées depuis plus de ".$timeBeforeNewContact." jours.</p>
           ";
 
@@ -90,6 +90,7 @@ while ($donnees = $request->fetch()) {
 $request->closeCursor();
 
 $message .= "       </table>
+                    <p>Pour vous désinscrire, suivez ce lien <a href=\"[LEAVE]\">[LEAVE]</a></p>
                </body>
             </html>";
 
